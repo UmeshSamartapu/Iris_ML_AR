@@ -2,7 +2,7 @@
 
 A full-stack Django application that combines **Machine Learning** with **Web-based Augmented Reality**. Users can predict the species of an Iris flower based on physical measurements and immediately visualize the result using a 3D Prism in AR.
 
-![Demo](assets/Iris_AR_ML.mp4)
+![Demo](assets/Iris_ML_AR.gif)
 
 ![Demo](assets/architecture.png)
 
