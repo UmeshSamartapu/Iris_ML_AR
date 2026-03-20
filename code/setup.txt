@@ -1,0 +1,55 @@
+Microsoft Windows [Version 10.0.26200.8037]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\3D_Django>conda activate env310
+
+(env310) E:\3D_Django>django-admin startproject myproject
+
+(env310) E:\3D_Django>cd myproject
+
+(env310) E:\3D_Django\myproject>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+March 20, 2026 - 18:42:31
+Django version 5.2.12, using settings 'myproject.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+
+(env310) E:\3D_Django\myproject>code .
+
+(env310) E:\3D_Django\myproject>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+March 20, 2026 - 18:43:17
+Django version 5.2.12, using settings 'myproject.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+[20/Mar/2026 18:43:19] "GET / HTTP/1.1" 200 12068
+Not Found: /favicon.ico
+[20/Mar/2026 18:43:19] "GET /favicon.ico HTTP/1.1" 404 2211
+
+(env310) E:\3D_Django\myproject>python manage.py startapp myapp
+
+(env310) E:\3D_Django\myproject>python train_model.py
+
+(env310) E:\3D_Django\myproject>python train_model.py
+✅ Model saved!
+
+(env310) E:\3D_Django\myproject>python train_model.py
+✅ Model saved!

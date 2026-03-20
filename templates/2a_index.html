@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Predictor & AR Explorer 🌸</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 to-purple-200 min-h-screen p-6">
+
+<div class="max-w-4xl mx-auto">
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800">🌸 Iris Flower Predictor</h1>
+        <p class="text-gray-600 mt-2">Enter dimensions to predict the species and explore in AR</p>
+    </div>
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 mb-8 border border-white/50">
+        <form method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% csrf_token %}
+
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-gray-500 ml-2 mb-1">Sepal Length</label>
+                <input type="number" step="0.1" name="sepal_length" placeholder="e.g. 5.1" required
+                       class="p-3 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition">
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-gray-500 ml-2 mb-1">Sepal Width</label>
+                <input type="number" step="0.1" name="sepal_width" placeholder="e.g. 3.5" required
+                       class="p-3 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition">
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-gray-500 ml-2 mb-1">Petal Length</label>
+                <input type="number" step="0.1" name="petal_length" placeholder="e.g. 1.4" required
+                       class="p-3 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition">
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-xs font-semibold text-gray-500 ml-2 mb-1">Petal Width</label>
+                <input type="number" step="0.1" name="petal_width" placeholder="e.g. 0.2" required
+                       class="p-3 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition">
+            </div>
+
+            <button type="submit"
+                    class="col-span-1 md:col-span-2 bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transform hover:-translate-y-1 transition duration-300 shadow-lg">
+                🔍 Predict Species
+            </button>
+        </form>
+    </div>
+
+    {% if result %}
+    <div class="bg-white border-l-8 border-green-500 p-6 rounded-2xl mb-8 shadow-lg flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+            <span class="text-sm font-bold text-green-600 uppercase tracking-widest">Result Found</span>
+            <h3 class="text-3xl font-black text-gray-800">
+                Species: <span class="text-indigo-600">{{ result }}</span>
+            </h3>
+        </div>
+        
+        <a href="{% url 'landing' %}" 
+           class="bg-black text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition flex items-center gap-2">
+            View {{ result }} in AR 👓
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="bg-white shadow-xl rounded-2xl p-6 overflow-hidden">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-700 underline decoration-indigo-300">
+                📜 Prediction History
+            </h3>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+                <thead>
+                    <tr class="bg-indigo-50 text-indigo-700 uppercase text-xs">
+                        <th class="p-4 rounded-l-lg">Sepal (L/W)</th>
+                        <th class="p-4">Petal (L/W)</th>
+                        <th class="p-4">Prediction</th>
+                        <th class="p-4 rounded-r-lg text-right">Timestamp</th>
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-100">
+                    {% for item in history %}
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-medium text-gray-600">
+                            {{ item.sepal_length }} / {{ item.sepal_width }}
+                        </td>
+                        <td class="p-4 font-medium text-gray-600">
+                            {{ item.petal_length }} / {{ item.petal_width }}
+                        </td>
+                        <td class="p-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold 
+                                {% if item.prediction == 'Setosa' %} bg-blue-100 text-blue-700
+                                {% elif item.prediction == 'Versicolor' %} bg-purple-100 text-purple-700
+                                {% else %} bg-pink-100 text-pink-700 {% endif %}">
+                                {{ item.prediction }}
+                            </span>
+                        </td>
+                        <td class="p-4 text-gray-400 text-right text-xs">
+                            {{ item.created_at|date:"M d, H:i" }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="p-8 text-center text-gray-400 italic">
+                            No predictions yet. Try the form above!
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris AR Project - Selection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+        h1 { color: #333; margin-bottom: 0.5rem; }
+        p { color: #666; margin-bottom: 2rem; }
+        
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.2s;
+            color: white;
+        }
+        .btn-mobile { background-color: #4CAF50; } /* Green */
+        .btn-laptop { background-color: #2196F3; } /* Blue */
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(90%);
+        }
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌸 Iris AR Explorer</h1>
+    <p>Choose your viewing mode based on your device:</p>
+
+    <div class="btn-group">
+        <a href="/mobile/" class="btn btn-mobile">📱 Mobile AR (Phone/Tablet)</a>
+        <a href="/laptop_ar/" class="btn btn-laptop">💻 Laptop AR (Webcam + Marker)</a>
+    </div>
+
+    <div class="footer-note">
+        Note: Mobile AR requires an HTTPS connection (ngrok).<br>
+        Laptop AR requires the "Hiro" marker.
+    </div>
+</div>
+
+</body>
+</html>
